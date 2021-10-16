@@ -1,0 +1,81 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+def androidExclusion = [
+        '**/databinding/**/*.*',
+        '**/android/databinding/*Binding.*',
+        '**/BR.*',
+        '**/R.*',
+        '**/R$*.*',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*_MembersInjector.*',
+        '**/Dagger*Component.*',
+        '**/Dagger*Component$Builder.*',
+        '**/*Module_*Factory.*',
+//        '**/*Fragment*.*',
+//        '**/*Adapter*.*',
+        '**/*ViewPager*.*',
+        '**/*ViewHolder*.*',
+        '**/*Module*.*',
+        '**/presentation/**/*.*',
+        '**/Presentation/**/*.*',
+        '**/*View.*',
+        '**/di/*.*',
+        '**/model/**/*.*',
+        '**/Model/**/*.*',
+        '**/view/*.*',
+        '**/analytics/*.*'
+]
+
+def modulesFlavor = [
+        "app",
+]
+
+def coverageClassDirectoriesJava = []
+def coverageClassDirectoriesKotlin = []
+def coverageMainSourceDirs = []
+def jacocoExecute = []
+def dependsOn = []
+
+modulesFlavor.forEach {
+    coverageClassDirectoriesJava.add(
+            fileTree(
+                    dir: "$rootDir/$it/build/intermediates/javac/debug/classes/",
+                    excludes: androidExclusion
+            )
+    )
+    coverageClassDirectoriesKotlin.add(
+            fileTree(
+                    dir: "$rootDir/$it/build/tmp/kotlin-classes/debug",
+                    excludes: androidExclusion
+            )
+    )
+    coverageMainSourceDirs.add("$rootDir/$it/src/main/kotlin")
+    coverageMainSourceDirs.add("$rootDir/$it/src/main/java")
+    jacocoExecute.add("$rootDir/$it/build/jacoco/testDebugUnitTest.exec")
+    dependsOn.add(":${it.replace("/", ":")}:testDebugUnitTest")
+}
+
+task codeCoverageReport(type: JacocoReport, dependsOn: dependsOn) {
+    doLast {
+        group = "Reporting"
+        description "Generate Jacoco coverage reports after running tests."
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+
+        classDirectories.from = files(coverageClassDirectoriesJava, coverageClassDirectoriesKotlin)
+        sourceDirectories.from = files(coverageMainSourceDirs)
+        executionData.from = files(jacocoExecute)
+    }
+}

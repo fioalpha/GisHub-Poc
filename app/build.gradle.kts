@@ -13,6 +13,7 @@ plugins {
 
 apply {
     from("../quality/detekt.gradle")
+    from("../quality/jacoco.gradle")
 }
 
 android {
