@@ -62,20 +62,18 @@ modulesFlavor.forEach {
     coverageMainSourceDirs.add("$rootDir/$it/src/main/kotlin")
     coverageMainSourceDirs.add("$rootDir/$it/src/main/java")
     jacocoExecute.add("$rootDir/$it/build/jacoco/testDebugUnitTest.exec")
-    dependsOn.add(":${it.replace("/", ":")}:testDebugUnitTest")
+    dependsOn.add(":$it:testDebugUnitTest")
 }
 
 task codeCoverageReport(type: JacocoReport, dependsOn: dependsOn) {
-    doLast {
-        group = "Reporting"
-        description "Generate Jacoco coverage reports after running tests."
-        reports {
-            xml.enabled = true
-            html.enabled = true
-        }
-
-        classDirectories.from = files(coverageClassDirectoriesJava, coverageClassDirectoriesKotlin)
-        sourceDirectories.from = files(coverageMainSourceDirs)
-        executionData.from = files(jacocoExecute)
+    group = "Reporting"
+    description "Generate Jacoco coverage reports after running tests."
+    reports {
+        xml.enabled = true
+        html.enabled = true
     }
+
+    classDirectories.from = files(coverageClassDirectoriesJava, coverageClassDirectoriesKotlin)
+    sourceDirectories.from = files(coverageMainSourceDirs)
+    executionData.from = files(jacocoExecute)
 }

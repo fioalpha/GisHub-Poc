@@ -1,7 +1,7 @@
 package com.fioalpha.gisthub
 
 import androidx.appcompat.app.AppCompatActivity
-import android.os.*
+import android.os.Bundle
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -306,3 +306,7 @@ hs_err_pid*
 
 # Mongo Explorer plugin
 .idea/mongoSettings.xml
+
+
+# Remmove ktlint
+ktlint
