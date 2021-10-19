@@ -1,0 +1,42 @@
+import groovy.xml.StreamingMarkupBuilder
+import groovy.xml.XmlSlurper
+
+task mergerCheckStyle() {
+    doLast {
+
+        def file1 = [
+                new XmlSlurper().parse("app/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.xml"),
+                new XmlSlurper().parse("app/build/reports/ktlint/ktlintTestSourceSetCheck/ktlintTestSourceSetCheck.xml"),
+                new XmlSlurper().parse("app/build/reports/ktlint/ktlintAndroidTestSourceSetCheck/ktlintAndroidTestSourceSetCheck.xml")
+        ]
+
+        for (int a in 1..file1.size() - 1) {
+            def checkStyleSize = file1[a].file.size() - 1
+            if (checkStyleSize < 0) continue
+
+            for (int i in 0..checkStyleSize) {
+                def _file = file1[a].file[i]
+                def _filesSize = _file.error.size() - 1
+
+                file1[0].appendNode {
+                    file(name: _file.'@name') {
+                        for (int j in 0.._filesSize) {
+                            error(
+                                    severity: _file.error[j].'@severity',
+                                    line: _file.error[j].'@line',
+                                    column: _file.error[j].'@column',
+                                    source: _file.error[j].'@source',
+                                    message: _file.error[j].'@message'
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        println groovy.xml.XmlUtil.serialize(file1[0])
+
+        new File("build/ktlintMerge.xml").write(groovy.xml.XmlUtil.serialize(file1[0]))
+    }
+
+}
