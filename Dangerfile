@@ -13,7 +13,7 @@ kotlin_detekt.report_file = "app/build/reports/detekt/detekt-checkstyle.xml"
 kotlin_detekt.detekt(inline_mode: true)
 
 # Jacoco
-#jacoco.minimum_project_coverage_percentage = 1 # default 0
-#jacoco.minimum_class_coverage_percentage = 1 # default 0
+jacoco.minimum_project_coverage_percentage = 50 # default 0
+jacoco.minimum_class_coverage_percentage = 50 # default 0
 jacoco.files_extension = [".java", "kt"]
 jacoco.report('app/build/reports/jacoco/codeCoverageReport/codeCoverageReport.xml', "http://jacoco-html-reports/")
