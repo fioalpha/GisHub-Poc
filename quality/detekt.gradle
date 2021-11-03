@@ -12,7 +12,9 @@ task detektVerification(type: JavaExec, group: "verification") {
     main = "io.gitlab.arturbosch.detekt.cli.Main"
     classpath = configurations.detekt
 
-    def input = "$projectDir"
+    println rootDir
+
+    def input = "$rootDir"
     def dir = "$rootDir/quality"
     def config = "$dir/detekt.yml"
     def report = "xml:$buildDir/reports/detekt/detekt-checkstyle.xml"
