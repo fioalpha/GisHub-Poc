@@ -8,9 +8,10 @@ object GistDependencies {
         GOOGLE_MATERIAL,
         CONSTRAINT_LAYOUT,
         COROUTINE_ANDROID,
+        RETROFIT,
         KOIN_ANDROID,
         KOIN_COMPOSE,
-        KOIN_NAVIGATION_GRAPH
+        KOIN_NAVIGATION_GRAPH,
     )
 
     val UNIT_TEST = listOf(
