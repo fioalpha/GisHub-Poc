@@ -4,7 +4,7 @@ warn("Big PR") if git.lines_of_code > 500
 # Add analytics checkstyle
 checkstyle_format.base_path = Dir.pwd
 #checkstyle_format.gradle_task = "ktlint --reporter=plain --reporter=checkstyle,output=ktlint-report-in-checkstyle-format.xml"
-checkstyle_format.report "build/ktlintMerge.xml"
+checkstyle_format.report "app/build/ktlintMerge.xml"
 
 # Add detekt
 kotlin_detekt.severity = "warning"

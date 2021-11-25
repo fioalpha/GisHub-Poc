@@ -9,8 +9,7 @@ task mergerCheckStyle() {
                 new XmlSlurper().parse("app/build/reports/ktlint/ktlintTestSourceSetCheck/ktlintTestSourceSetCheck.xml"),
                 new XmlSlurper().parse("app/build/reports/ktlint/ktlintAndroidTestSourceSetCheck/ktlintAndroidTestSourceSetCheck.xml"),
                 new XmlSlurper().parse("feature/gist/build/reports/ktlint/ktlintKotlinScriptCheck/ktlintKotlinScriptCheck.xml"),
-//                new XmlSlurper().parse("feature/gist/build/reports/ktlint/ktlintTestSourceSetCheck/ktlintTestSourceSetCheck.xml"),
-//                new XmlSlurper().parse("feature/gist/build/reports/ktlint/ktlintAndroidTestSourceSetCheck/ktlintAndroidTestSourceSetCheck.xml")
+                new XmlSlurper().parse("feature/gist/build/reports/ktlint/ktlintMainSourceSetCheck/ktlintMainSourceSetCheck.xml"),
         ]
 
         for (int a in 1..file1.size() - 1) {
@@ -39,7 +38,7 @@ task mergerCheckStyle() {
 
         println groovy.xml.XmlUtil.serialize(file1[0])
 
-        new File("build/ktlintMerge.xml").write(groovy.xml.XmlUtil.serialize(file1[0]))
+        new File("app/build/ktlintMerge.xml").write(groovy.xml.XmlUtil.serialize(file1[0]))
     }
 
 }
