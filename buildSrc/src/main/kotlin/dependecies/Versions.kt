@@ -28,3 +28,10 @@ const val KOIN_ANDROID = "io.insert-koin:koin-android:$KOIN_VERSION"
 const val KOIN_NAVIGATION_GRAPH = "io.insert-koin:koin-androidx-navigation:$KOIN_VERSION"
 const val KOIN_COMPOSE = "io.insert-koin:koin-androidx-compose:$KOIN_VERSION"
 const val KOIN_TEST = "io.insert-koin:koin-test:$KOIN_VERSION"
+const val KOIN_JVM = "io.insert-koin:koin-core:$KOIN_VERSION"
+
+
+internal const val RETROFIT_VERSION = "2.9,0"
+const val RETROFIT = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+const val GSON_CONVERT_RETROFIT = "com.squareup.retrofit2:converter-gson:2.9.0"
+const val HTTP_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:4.9.3"
