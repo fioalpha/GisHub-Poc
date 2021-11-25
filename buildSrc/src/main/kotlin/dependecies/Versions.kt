@@ -20,3 +20,11 @@ const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:2.1.1"
 const val JUNIT = "junit:junit:4.+"
 const val TEST_EXT_JUNIT = "androidx.test.ext:junit:1.1.3"
 const val ESPRESSO = "androidx.test.espresso:espresso-core:3.4.0"
+
+const val COROUTINE_ANDROID = "'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'"
+
+internal const val KOIN_VERSION = "3.1.3"
+const val KOIN_ANDROID = "io.insert-koin:koin-android:$KOIN_VERSION"
+const val KOIN_NAVIGATION_GRAPH = "io.insert-koin:koin-androidx-navigation:$KOIN_VERSION"
+const val KOIN_COMPOSE = "io.insert-koin:koin-androidx-compose:$KOIN_VERSION"
+const val KOIN_TEST = "io.insert-koin:koin-test:$KOIN_VERSION"

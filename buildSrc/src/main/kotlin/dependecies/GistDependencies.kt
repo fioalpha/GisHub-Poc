@@ -7,6 +7,10 @@ object GistDependencies {
         ANDROIDX_APP_COMPAT,
         GOOGLE_MATERIAL,
         CONSTRAINT_LAYOUT,
+        COROUTINE_ANDROID,
+        KOIN_ANDROID,
+        KOIN_COMPOSE,
+        KOIN_NAVIGATION_GRAPH
     )
 
     val UNIT_TEST = listOf(
