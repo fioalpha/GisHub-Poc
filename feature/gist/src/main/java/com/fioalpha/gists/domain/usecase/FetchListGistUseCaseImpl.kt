@@ -11,3 +11,4 @@ class FetchListGistUseCaseImpl(
         return gistRepository.getGist(page)
     }
 }
+
